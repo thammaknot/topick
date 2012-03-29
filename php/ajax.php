@@ -81,8 +81,11 @@ try{
     break;
 
   case 'endSession':
-    error_log("****End session!!!!!!" . print_r($_POST, true));
     $response = Chat::endSession($_POST['session_id'], $_POST['user_id']);
+    break;
+
+  case 'newTopic':
+    $response = Chat::newTopic($_GET['session_id'], $_GET['user_id']);
     break;
 
   default:

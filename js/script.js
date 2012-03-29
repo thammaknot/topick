@@ -116,7 +116,7 @@ var chat = {
       return false;
     });
 
-    document.getElementById('session').onclick = function () {
+    document.getElementById('session').onclick = function() {
       if (chat.working) {
 	return false;
       }
@@ -129,6 +129,14 @@ var chat = {
 	chat.endSession(global_session_id);
       }
       ToggleSessionButton();
+    };
+
+    document.getElementById('topic').onclick = function() {
+      if (chat.working) {
+	return false;
+      }
+      chat.working = true;
+      chat.getNewTopic();
     };
   },
 
@@ -258,6 +266,22 @@ var chat = {
     chat.data.jspAPI.scrollToBottom(true);
   },
 
+  getNewTopic : function() {
+    $.tzGET('newTopic',
+	    {session_id: global_session_id, user_id: user_id},
+	    function(r) {
+	      chat.working = false;
+	      var params = {
+		id : r.insertID,
+		author : user_id,
+		text : r.text
+	      };
+	      console.log("Response: ");
+	      console.log(r);
+	      chat.addChatLine(params);
+	    });
+  },
+
   // The render method generates the HTML markup
   // that is needed by the other methods:
   render : function(template, params) {
@@ -282,6 +306,11 @@ var chat = {
       arr = [
 	'<div class="chat chat-', params.id, ' rounded">', '<span class="author">', name,
 	': </span><span class="text">', params.text, '</span><span class="time">', params.time, '</span></div>'];
+      break;
+
+    case 'topicLine':
+      arr = ['<div class="topic topic-', params.id, ' rounded">', '<span class="author">', name,
+      ': </span><span class="text">', params.text, '</span><span class="time">', params.time, '</span></div>'];
       break;
 
     case 'user':

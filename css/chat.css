@@ -98,11 +98,8 @@
     font-size:11px;
 }
 
-
-/* Chat User Area */
-
-
-#chatUsers{
+/* Control Panel Area */
+#controlPanel{
     background-color:#202020;
     border:1px solid #111111;
     height:360px;
@@ -111,22 +108,6 @@
     top:56px;
     width:19%;
 }
-
-#chatUsers .user{
-    background:url('http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?size=30') no-repeat 1px 1px #444444;
-    border:1px solid #111111;
-    float:left;
-    height:32px;
-    margin:10px 0 0 10px;
-    width:32px;
-}
-
-#chatUsers .user img{
-    border:1px solid #444444;
-    display:block;
-    visibility:hidden;
-}
-
 
 /* Bottom Bar */
 

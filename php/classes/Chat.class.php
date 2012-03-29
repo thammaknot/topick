@@ -237,6 +237,23 @@ class Chat {
     return array('status' => 'success');
   }
 
+  public static function newTopic($session_id, $user_id) {
+    // Get one random topic
+    $query = "SELECT text FROM topics ORDER BY RAND() LIMIT 1";
+    $result = DB::query($query);
+    $num_rows = $result->num_rows;
+    if ($num_rows != 1) {
+      error_log("Requesting one topic but got " . $num_rows);
+      return null;
+    }
+    $row = $result->fetch_object();
+    $topic = $row->text;
+
+    $result = Chat::submitChat($topic, $session_id, $user_id);
+    $result['text'] = $topic;
+    return $result;
+  }
+
   public static function gravatarFromHash($hash, $size=23){
     return 'http://www.gravatar.com/avatar/'.$hash.'?size='.$size.'&amp;default='.
       urlencode('http://www.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?size='.$size);
