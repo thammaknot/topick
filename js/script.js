@@ -132,6 +132,10 @@ var chat = {
     };
 
     document.getElementById('topic').onclick = function() {
+      if (global_session_id == 'undefined') {
+	chat.displayError('Please start a session first.');
+	return;
+      }
       if (chat.working) {
 	return false;
       }

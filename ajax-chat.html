@@ -7,11 +7,20 @@
 <link rel="stylesheet" type="text/css" href="js/jScrollPane/jScrollPane.css" />
 <link rel="stylesheet" type="text/css" href="css/page.css" />
 <link rel="stylesheet" type="text/css" href="css/chat.css" />
+<link rel="stylesheet" type="text/css" href="css/topics.css" />
 
 </head>
 
 <body>
 
+<div class="navBar">
+  <ul>
+    <li><a href="/topick/ajax-chat.html">Chats</a></li>
+    <li><a href="/topick/topics.html">Topics</a></li>
+    <li><a href="/topick/sessions.html">Conversations</a></li>
+  </ul>
+</div>
+<br/>
 <div id="chatContainer">
     <div id="chatTopBar" class="rounded"></div>
     <div id="chatLineHolder"></div>
@@ -20,12 +29,12 @@
     </div>
     <div id="chatBottomBar" class="rounded">
     <div class="tip"></div>
-    <span class="inputPanelSpan">
+    <!--span class="inputPanelSpan"-->
       <form id="submitForm" method="post" action="">
         <input id="chatText" name="chatText" class="rounded" maxlength="255" />
         <input type="submit" class="blueButton" value="Submit" />
       </form>
-    </span>
+    <!--/span-->
     <span class="inputPanelSpan">
       <label class="blueButton labelButton" id="session">New Chat</label>
     </span>
