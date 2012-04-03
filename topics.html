@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Chat Away!</title>
+<title>Suggest a Topic!</title>
 
 <link rel="stylesheet" type="text/css" href="js/jScrollPane/jScrollPane.css" />
 <link rel="stylesheet" type="text/css" href="css/page.css" />
@@ -18,34 +18,33 @@
     <li><a href="/topick/ajax-chat.html">Chats</a></li>
     <li><a href="/topick/topics.html">Topics</a></li>
     <li><a href="/topick/sessions.html">Conversations</a></li>
-    <li><a href="/topick/login.html">Login</a></li>
   </ul>
 </div>
 <br/>
-<div id="chatContainer">
-    <div id="chatTopBar" class="rounded"></div>
-    <div id="chatLineHolder"></div>
-    <div id="controlPanel" class="rounded">
-      <input id="topic" value="New Topic" type="submit" class="blueButton">
+<div class="mainPanel">
+  <div class="topicList">
+    <div class="navBar">
+      <ul>
+        <li>Popular Topics</li>
+        <li><a href="#" id="allTime">All time</a></li>
+        <li><a href="#" id="30days">30 Days</a></li>
+        <li><a href="#" id="7days">7 Days</a></li>
+        <li><a href="#" id="1day">1 Day</a></li>
+        <li><a href="#" id="recent">Recent</a></li>
+      </ul>
     </div>
-    <div id="chatBottomBar" class="rounded">
-    <div class="tip"></div>
-    <!--span class="inputPanelSpan"-->
-      <form id="submitForm" method="post" action="">
-        <input id="chatText" name="chatText" class="rounded" maxlength="255" />
-        <input type="submit" class="blueButton" value="Submit" />
-      </form>
-    <!--/span-->
-    <span class="inputPanelSpan">
-      <label class="blueButton labelButton" id="session">New Chat</label>
-    </span>
-    </div>
+    <div id="topTopics" class="topTopics" />
+  </div>
+  <form id="topicForm" method="post" action="">
+    <input id="topicText" name="topicText" class="topicInput" maxlength="200" />
+    <input type="submit" class="blueButton" value="Submit" />
+  </form>
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
 </script>
 <script src="js/jScrollPane/jquery.mousewheel.js"></script>
 <script src="js/jScrollPane/jScrollPane.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/topics.js"></script>
 </body>
 </html>

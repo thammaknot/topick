@@ -77,7 +77,7 @@ try{
     break;
 
   case 'waitForNewSession':
-    $response = Chat::waitForNewSession($_GET['user_id']);
+    $response = Chat::waitForNewSession($_POST['user_id']);
     break;
 
   case 'endSession':
@@ -85,7 +85,7 @@ try{
     break;
 
   case 'newTopic':
-    $response = Chat::newTopic($_GET['session_id'], $_GET['user_id']);
+    $response = Chat::newTopic($_POST['session_id'], $_POST['user_id']);
     break;
 
   default:

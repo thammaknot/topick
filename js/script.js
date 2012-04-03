@@ -200,7 +200,7 @@ var chat = {
   },
 
   waitForNewSession : function(user_id) {
-    $.tzGET('waitForNewSession', {user_id: user_id}, function(r) {
+    $.tzPOST('waitForNewSession', {user_id: user_id}, function(r) {
       if (typeof r.session_id != 'undefined') {
 	// Found!
 	chat.data.msg = 'In session ' + r.session_id;
@@ -271,19 +271,19 @@ var chat = {
   },
 
   getNewTopic : function() {
-    $.tzGET('newTopic',
-	    {session_id: global_session_id, user_id: user_id},
-	    function(r) {
-	      chat.working = false;
-	      var params = {
-		id : r.insertID,
-		author : user_id,
-		text : r.text
-	      };
-	      console.log("Response: ");
-	      console.log(r);
-	      chat.addChatLine(params);
-	    });
+    $.tzPOST('newTopic',
+	     {session_id: global_session_id, user_id: user_id},
+	     function(r) {
+	       chat.working = false;
+	       var params = {
+		 id : r.insertID,
+		 author : user_id,
+		 text : r.text
+	       };
+	       console.log("Response: ");
+	       console.log(r);
+	       chat.addChatLine(params);
+	     });
   },
 
   // The render method generates the HTML markup

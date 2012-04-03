@@ -1,0 +1,32 @@
+.navBar {
+    text-align: center;
+    margin: 30px 0px 50px 0px;
+    padding: 0px;
+}
+
+.navBar ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.navBar ul li {
+    display: inline;
+    margin: 0px 10px 0px 10px;
+}
+
+.mainPanel {
+    text-align: center;
+}
+
+.topicInput {
+    width: 200px;
+}
+
+.topic {
+    display: inline;
+}
+
+.vote {
+    display: inline;
+    margin: 0px 0px 0px 10px;
+}
