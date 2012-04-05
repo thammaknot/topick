@@ -15,9 +15,6 @@ error_reporting(E_ALL ^ E_NOTICE);
 require "classes/DB.class.php";
 require "classes/Topic.class.php";
 
-session_name('webchat');
-session_start();
-
 if(get_magic_quotes_gpc()){
   // If magic quotes is enabled, strip the extra slashes
   array_walk_recursive($_GET, create_function('&$v,$k','$v = stripslashes($v);'));

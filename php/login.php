@@ -15,9 +15,6 @@ error_reporting(E_ALL ^ E_NOTICE);
 require "classes/DB.class.php";
 require "classes/Login.class.php";
 
-session_name('webchat');
-session_start();
-
 if(get_magic_quotes_gpc()){
   // If magic quotes is enabled, strip the extra slashes
   array_walk_recursive($_GET, create_function('&$v,$k','$v = stripslashes($v);'));
@@ -34,10 +31,18 @@ try{
   // Handling the supported actions:
 
   switch($_GET['action']){
-
   case 'login':
-    $response = Login::login($_POST['username'], $_POST['password']);
+    $response = Login::loginUser($_POST['username'], $_POST['password']);
     break;
+  case 'signup':
+    $response = Login::signup($_POST['username'], $_POST['password'], $_POST['email']);
+    break;
+  case 'checkUsername':
+    $response = Login::checkUsername($_GET['username']);
+    break;
+  case 'auth':
+    // Check if the user of the current session already logs in.
+    $response = Login::auth();
   default:
     throw new Exception('Wrong action');
   }
