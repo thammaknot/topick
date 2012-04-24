@@ -1,11 +1,20 @@
 $(document).ready(function() {
   // Run the init method on document ready:
   topics.Init();
-  topics.ShowTopTopics(7);
+  // Wait 200 ms for authentication to finish
+  setTimeout(function () {
+    topics.ShowTopTopics(7, 10);
+  }, 200);
 });
 
+function sleep(ms) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + ms);
+}
+
 function vote(id, score) {
-  $.tzPOST('vote', {id: id, score: score}, function(r) {
+  console.log("Voting for user " + username);
+  $.tzPOST('vote', {id: id, score: score, username: username}, function(r) {
     // Do nothing at the moment
     console.log("Voting done..." + r.status);
   });
@@ -49,18 +58,21 @@ var topics = {
   },  // end init
 
   ShowTopTopics : function(range, count) {
+    console.log("getting top topics for " + username);
     $.tzGET('getTopTopics',
-	    {range: range, count: count},
+	    {range: range, count: count, username: username},
 	    function(r) {
 	      var topicList = $('#topTopics');
 	      topicList.empty();
+	      console.log(r);
 	      if (r.topics == undefined) {
 		topicList.append("<span>Nothing to show.</span>");
 	      } else {
 		for (var i = 0; i < r.topics.length; i++) {
 		  topicList.append(topics.Render(r.topics[i].id,
 						 r.topics[i].text,
-						 r.topics[i].score));
+						 r.topics[i].score,
+						 r.topics[i].vote));
 		}
 	      }
 	    });
@@ -68,33 +80,33 @@ var topics = {
 
   ShowRecentTopics : function(count) {
     $.tzGET('getRecentTopics',
-	    {count: count},
+	    {count: count, username: username},
 	    function(r) {
 	      var topicList = $('#topTopics');
 	      topicList.empty();
-	      console.log("returned here!!!");
 	      console.log(r);
 	      if (r.topics == undefined) {
 		topicList.append("<span>Nothing to show.</span>");
 	      } else {
-		console.log("heree!!!");
 		for (var i = 0; i < r.topics.length; i++) {
 		  topicList.append(topics.Render(r.topics[i].id,
 						 r.topics[i].text,
-						 r.topics[i].score));
+						 r.topics[i].score,
+						 r.topics[i].vote));
 		}
 	      }
 	    });
   },
 
-  Render : function(id, text, score) {
+  Render : function(id, text, score, vote) {
     if (score == undefined) {
       score = "?";
     }
     arr = ["<div class=\"topic\">" + text + "\t[" + score + "]</div>",
 	   "<div class=\"vote\"><span onclick=\"vote(" + id + ", 1)\">^</span>",
 	   "&nbsp;&nbsp;",
-	   "<span onclick=\"vote(" + id + ", -1);\">v</span></div><br/>"];
+	   "<span onclick=\"vote(" + id + ", -1);\">v</span></div>",
+	   "<div class=\"vote\">{" + vote + "}</div><br/>"];
     return arr.join('');
   }
 };  // end class topics

@@ -7,6 +7,7 @@ class Login {
     $result = DB::query($query);
     if ($result->num_rows == 1) {
       //Login Successful
+      session_start();
       //Regenerate session ID to prevent session fixation attacks
       session_regenerate_id();
       $user = $result->fetch_object();
@@ -18,6 +19,15 @@ class Login {
     } else {
       return array('status' => 0, 'msg' => 'Incorrect username or password');
     }
+  }
+
+  public static function logoutUser($username) {
+    $auth = Login::auth();
+    if ($auth['status'] == 1) {
+      unset($_SESSION['SESS_MEMBER_ID']);
+      session_destroy();
+    }
+    return array('status' => 1);
   }
 
   public static function signup($username, $password, $email) {

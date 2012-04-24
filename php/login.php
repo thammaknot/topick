@@ -34,6 +34,9 @@ try{
   case 'login':
     $response = Login::loginUser($_POST['username'], $_POST['password']);
     break;
+  case 'logout':
+    $response = Login::logoutUser($_POST['username']);
+    break;
   case 'signup':
     $response = Login::signup($_POST['username'], $_POST['password'], $_POST['email']);
     break;
@@ -43,6 +46,7 @@ try{
   case 'auth':
     // Check if the user of the current session already logs in.
     $response = Login::auth();
+    break;
   default:
     throw new Exception('Wrong action');
   }

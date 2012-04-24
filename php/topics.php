@@ -36,13 +36,13 @@ try{
     $response = Topic::addTopic($_POST['topic']);
     break;
   case 'getTopTopics':
-    $response = Topic::getTopTopics($_GET['range'], $_GET['count']);
+    $response = Topic::getTopTopics($_GET['range'], $_GET['count'], $_GET['username']);
     break;
   case 'getRecentTopics':
-    $response = Topic::getRecentTopics($_GET['count']);
+    $response = Topic::getRecentTopics($_GET['count'], $_GET['username']);
     break;
   case 'vote':
-    $response = Topic::vote($_POST['id'], $_POST['score']);
+    $response = Topic::vote($_POST['id'], $_POST['score'], $_POST['username']);
     break;
   default:
     throw new Exception('Wrong action');
