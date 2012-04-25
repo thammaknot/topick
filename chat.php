@@ -13,14 +13,7 @@
 
 <body>
 
-<div class="navBar">
-  <ul>
-    <li><a href="/topick/ajax-chat.html">Chats</a></li>
-    <li><a href="/topick/topics.html">Topics</a></li>
-    <li><a href="/topick/sessions.html">Conversations</a></li>
-    <li><a href="/topick/login.html" id="loginButton">Login</a></li>
-  </ul>
-</div>
+<?PHP include("nav.php"); ?>
 <br/>
 <div id="chatContainer">
     <div id="chatTopBar" class="rounded"></div>
@@ -41,12 +34,14 @@
     </span>
     </div>
 </div>
+<?PHP include("popup.php"); ?>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
 </script>
 <script src="js/jScrollPane/jquery.mousewheel.js"></script>
 <script src="js/jScrollPane/jScrollPane.min.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/popup.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>

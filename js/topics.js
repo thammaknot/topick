@@ -13,11 +13,20 @@ function sleep(ms) {
 }
 
 function vote(id, score) {
-  console.log("Voting for user " + username);
-  $.tzPOST('vote', {id: id, score: score, username: username}, function(r) {
-    // Do nothing at the moment
-    console.log("Voting done..." + r.status);
-  });
+  if (username == undefined) {
+    // Reroute to login flow.
+    LoadPopup("You need to login to vote.",
+	      "Login",
+	      function() {
+		window.location = "/topick/login.php";
+	      });
+  } else {
+    // Actual voting
+    $.tzPOST('vote', {id: id, score: score, username: username}, function(r) {
+      // Do nothing at the moment
+      console.log("Voting done..." + r.status);
+    });
+  }
 }
 
 var topics = {

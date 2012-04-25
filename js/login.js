@@ -6,9 +6,9 @@ var login = {
     $.tzPOST('login', {username: username, password: password},
 	     function(r) {
 	       if (r.status == 1) {
-		 window.location = "/topick/ajax-chat.html";
+			 window.location = "/topick/chat.php";
 	       } else {
-		 displayError("Login failed. " + r.msg);
+			 displayError("Login failed. " + r.msg);
 	       }
 	     });
     return false;
@@ -30,7 +30,7 @@ var login = {
     $.tzPOST('signup', {username: username, password: password, email: email},
 	     function(r) {
 	       if (r.status == 1) {
-		 window.location = "/topick/ajax-chat.html";
+		 window.location = "/topick/chat.php";
 	       } else {
 		 displayError("Signup failed. " + r.msg);
 	       }
